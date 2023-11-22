@@ -1,0 +1,17 @@
+_default:
+    @just --list
+
+# Install dependencies
+bootstrap:
+    brew install direnv
+    direnv allow
+    pip install --upgrade pip pip-tools
+    pip-sync requirements.txt
+
+# Build dependencies lockfile
+deps-build:
+    pip-compile requirements.in > requirements.txt
+
+# Format the project
+fmt:
+    black .
